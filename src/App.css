@@ -18,3 +18,7 @@ body{
   display:flex;
   flex-direction: column;
 }
+
+.ant-table-row:hover {
+  background-color: lightcoral;
+}

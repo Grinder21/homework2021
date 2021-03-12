@@ -2,32 +2,35 @@ import React from "react";
 import { Table } from "antd";
 import PeopleStyle from "./People.module.css";
 import "antd/dist/antd.css";
+import { inject, observer } from "mobx-react";
 let url = "https://jsonplaceholder.typicode.com/users";
 
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
-  },
-  {
-    title: "Username",
-    dataIndex: "username",
-    key: "username",
-  },
-];
-
+@inject("MainStore")
+@observer
 class People extends React.Component {
   state = {
     users: [],
     error: "",
     studId: "",
   };
+
+  columns = [
+    {
+      title: "Имя студента",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Имя пользователя",
+      dataIndex: "username",
+      key: "username",
+    },
+  ];
 
   componentDidMount = async () => {
     let users = [];
@@ -53,6 +56,7 @@ class People extends React.Component {
 
   render() {
     const { error, users } = this.state;
+    const { MainStore } = this.props;
 
     return (
       <div className={PeopleStyle.mainDiv}>
@@ -65,12 +69,14 @@ class People extends React.Component {
               onClick: (event) => {
                 let id = record.id;
                 this.setState({ studId: id });
+                MainStore.pushElementArray(id);
+                console.log(MainStore);
                 this.props.parentFunc({ id });
               }, // click row
             };
           }}
           dataSource={users}
-          columns={columns}
+          columns={this.columns}
         />
       </div>
     );

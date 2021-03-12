@@ -7,7 +7,11 @@ import Age from "./Files/Age";
 import People from "../People";
 import { NavLink } from "react-router-dom";
 import Courses from "../Courses";
+import { inject, observer } from "mobx-react";
 
+
+@inject("MainStore")
+@observer
 class Navigator extends React.Component {
   state = {
     name: "Ефремов Михаил Андреевич",
