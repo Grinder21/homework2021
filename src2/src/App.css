@@ -1,0 +1,24 @@
+body{
+  display:flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.MainScreen{
+  display:flex;
+  width:100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: rgb(195, 214, 87);
+}
+
+.SubScreen{
+  display:flex;
+  flex-direction: column;
+}
+
+.ant-table-row:hover {
+  background-color: lightcoral;
+}
